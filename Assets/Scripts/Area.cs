@@ -4,9 +4,10 @@ using UnityEngine.Tilemaps;
 
 public class Area : MonoBehaviour
 {
-    private bool[,] grid;
-    private Tilemap tilemap;
+    
     [SerializeField] private TileBase tile;
+    private Dirt[,] grid;
+    private Tilemap tilemap;
     public int width;
     public int height;
 
@@ -22,12 +23,12 @@ public class Area : MonoBehaviour
 
     private void Init()
     {
-        grid = new bool[width, height];
+        grid = new Dirt[width, height];
 
         for(int x=0; x<width; x++){
             for(int y=0; y<height; y++){
                 tilemap.SetTile(new Vector3Int(x, y, 0), tile);
-                grid[x, y] = false;
+                grid[x, y] = new Dirt(DirtState.Empty, null);
             }
         }
 
@@ -57,13 +58,14 @@ public class Area : MonoBehaviour
         return true;
     }
 
-    public bool GetDirtState(Vector3Int tile)
+    public Dirt GetDirt(Vector3Int tile)
     {
         return grid[tile.x, tile.y];
     }
 
-    public void SetDirtState(Vector3Int tile, bool state)
+    public void SetDirt(Vector3Int tile, DirtState dirtState, GameObject crop)
     {
-        grid[tile.x, tile.y] = state;
+        grid[tile.x, tile.y].dirtState = dirtState;
+        grid[tile.x, tile.y].crop = crop;
     }
 }

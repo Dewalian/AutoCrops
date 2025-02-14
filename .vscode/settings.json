@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Projek Magang.sln"
+    "dotnet.defaultSolution": "AutoCrops.sln"
 }

@@ -55,14 +55,20 @@ public class Marker : MonoBehaviour
 
     private void SelectTile(InputAction.CallbackContext input)
     {
-        bool isDirtOccupied = area.GetDirtState(currTile);
-        if(selectedCrop == null || isDirtOccupied){
+        DirtState dirtState = area.GetDirt(currTile).dirtState;
+        if(selectedCrop == null || dirtState == DirtState.Occupied){
             Debug.Log("occupied");
-            return;
         }
-
-        Instantiate(selectedCrop.gameObject, transform.position, Quaternion.identity);
-        area.SetDirtState(currTile, true);
+        else if(dirtState == DirtState.Ready)
+        {
+            GameObject crop = area.GetDirt(currTile).crop;
+            Destroy(crop);
+        }
+        else{
+            GameObject cropObj = Instantiate(selectedCrop.gameObject, transform.position, Quaternion.identity);
+            cropObj.GetComponent<Crop>().Init(area, currTile);
+            area.SetDirt(currTile, DirtState.Occupied, cropObj);
+        }
     }
 
     private void Init()

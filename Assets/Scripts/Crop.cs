@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Crop : MonoBehaviour
 {
     [SerializeField] private CropStatsSO stats;
+    private Area area;
+    private Vector3Int tile;
     private float secondsPassed;
     private SpriteRenderer spriteRenderer;
     private int phase;
@@ -22,6 +25,12 @@ public class Crop : MonoBehaviour
         spriteRenderer.sprite = stats.icons[phase];
     }
 
+    public void Init(Area area, Vector3Int tile)
+    {
+        this.area = area;
+        this.tile = tile;
+    }
+
     private void Update()
     {
         Timer();
@@ -30,7 +39,6 @@ public class Crop : MonoBehaviour
     private void Timer()
     {
         if(secondsPassed >= stats.time){
-            spriteRenderer.sprite = stats.readyIcon;
             return;
         }
 
@@ -41,6 +49,12 @@ public class Crop : MonoBehaviour
         }
 
         secondsPassed += Time.deltaTime;
+
+        if(secondsPassed >= stats.time){
+            spriteRenderer.sprite = stats.readyIcon;
+            area.SetDirt(tile, DirtState.Ready, gameObject);
+            return;
+        }
     }
 
     public Sprite GetSeedIcon()
