@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9555025a99269a4bbeab2651b655f69, type: 3}
+  m_Name: Potato
+  m_EditorClassIdentifier: 
+  cropName: Potato
+  seedIcon: {fileID: 4532080057755952147, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  icons:
+  - {fileID: 1900126851282781423, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  - {fileID: 3027494423994646779, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  - {fileID: 1638643716744589379, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  readyIcon: {fileID: 5065768391458761561, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  time: 5
+  basePrice: 100
