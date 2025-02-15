@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9555025a99269a4bbeab2651b655f69, type: 3}
+  m_Name: Turnip
+  m_EditorClassIdentifier: 
+  cropName: Turnip
+  seedIcon: {fileID: -7455853411062165625, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  icons:
+  - {fileID: -8129651984545274171, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  - {fileID: 8005226687534335053, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  - {fileID: 4475564145210681097, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  readyIcon: {fileID: 6491916475305925652, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  time: 5
+  basePrice: 100

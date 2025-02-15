@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Inventory : MonoBehaviour
 {
@@ -11,6 +10,7 @@ public class Inventory : MonoBehaviour
     private Crop selectedCrop;
     private PlayerInput playerInput;
     public Action<Crop> OnAddCrop;
+    public Action<int> OnSelectCrop;
 
     private void Awake()
     {
@@ -27,6 +27,15 @@ public class Inventory : MonoBehaviour
 
         playerInput.Item.SelectThird.performed += (input) => SelectCrop(2);
         playerInput.Item.SelectThird.Enable();
+
+        playerInput.Item.SelectFourth.performed += (input) => SelectCrop(3);
+        playerInput.Item.SelectFourth.Enable();
+
+        playerInput.Item.SelectFifth.performed += (input) => SelectCrop(4);
+        playerInput.Item.SelectFifth.Enable();
+
+        playerInput.Item.SelectSixth.performed += (input) => SelectCrop(5);
+        playerInput.Item.SelectSixth.Enable();
     }
 
     private void OnDisable()
@@ -34,6 +43,9 @@ public class Inventory : MonoBehaviour
         playerInput.Item.SelectFirst.Disable();
         playerInput.Item.SelectSecond.Disable();
         playerInput.Item.SelectThird.Disable();
+        playerInput.Item.SelectFourth.Disable();
+        playerInput.Item.SelectFifth.Disable();
+        playerInput.Item.SelectSixth.Disable();
     }
 
     private void Start()
@@ -50,16 +62,17 @@ public class Inventory : MonoBehaviour
         OnAddCrop?.Invoke(crop);
     }
 
-    private void SelectCrop(int index)
+    public void SelectCrop(int index)
     {
         if(selectedCrop == crops[index]){
             selectedCrop = null;
             marker.SetCrop(null);
-
-            return;
+        }
+        else{
+            selectedCrop = crops[index];
+            marker.SetCrop(selectedCrop);
         }
 
-        selectedCrop = crops[index];
-        marker.SetCrop(selectedCrop);
+        OnSelectCrop?.Invoke(index);
     }
 }

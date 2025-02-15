@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9555025a99269a4bbeab2651b655f69, type: 3}
+  m_Name: Spinach
+  m_EditorClassIdentifier: 
+  cropName: Radish
+  seedIcon: {fileID: -5871752243600211268, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  icons:
+  - {fileID: 5600175487410814964, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  - {fileID: -7857914527944237572, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  - {fileID: 9166192253844269286, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  readyIcon: {fileID: 7619221027992080592, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  time: 5
+  basePrice: 100

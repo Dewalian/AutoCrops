@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9555025a99269a4bbeab2651b655f69, type: 3}
+  m_Name: Onion
+  m_EditorClassIdentifier: 
+  cropName: Onion
+  seedIcon: {fileID: 5032008028197394732, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  icons:
+  - {fileID: -7320639650909410923, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  - {fileID: 7936929632667333882, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  - {fileID: -824800127769178093, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  readyIcon: {fileID: 7919750047730634564, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
+  time: 5
+  basePrice: 100

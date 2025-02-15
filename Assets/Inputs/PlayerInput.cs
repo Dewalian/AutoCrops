@@ -28,10 +28,19 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             ""id"": ""f65fcece-ae8f-426b-9376-28cbf07d31a8"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""MoveKeyboard"",
                     ""type"": ""Button"",
                     ""id"": ""d8b6f70c-81ef-4e8a-962e-4e8f497157db"",
                     ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MoveCursor"",
+                    ""type"": ""Value"",
+                    ""id"": ""042be877-22dd-4dc9-af32-0995aec362a7"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -54,7 +63,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeyboard"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -65,7 +74,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeyboard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -76,7 +85,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeyboard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -87,7 +96,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeyboard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -98,7 +107,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeyboard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -109,7 +118,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeyboard"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -120,7 +129,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeyboard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -131,7 +140,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeyboard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -142,7 +151,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeyboard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -153,7 +162,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""MoveKeyboard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -165,6 +174,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a80ffc0e-860e-4bf1-922a-5511486df708"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa75658c-668a-46f7-95ee-64306c2b3046"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveCursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -196,6 +227,33 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""Select Third"",
                     ""type"": ""Button"",
                     ""id"": ""54bed710-a579-499b-9fea-f2ebb6478931"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select Fourth"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecbcca44-c82b-4fdb-80b5-21276811aa54"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select Fifth"",
+                    ""type"": ""Button"",
+                    ""id"": ""b5845e2c-198c-4781-978c-4aed1e1c8b59"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select Sixth"",
+                    ""type"": ""Button"",
+                    ""id"": ""837167ac-d033-448f-9bbc-cfe2a0d6d480"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -235,6 +293,39 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Select Third"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4eeb43cc-857e-4f34-8cea-f313587d900a"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select Fourth"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58880767-d232-49ad-b6d3-3feb50cba8fc"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select Fifth"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0fada37c-b00c-434e-8492-e612bc8e7623"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select Sixth"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -243,13 +334,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
 }");
         // Marker
         m_Marker = asset.FindActionMap("Marker", throwIfNotFound: true);
-        m_Marker_Move = m_Marker.FindAction("Move", throwIfNotFound: true);
+        m_Marker_MoveKeyboard = m_Marker.FindAction("MoveKeyboard", throwIfNotFound: true);
+        m_Marker_MoveCursor = m_Marker.FindAction("MoveCursor", throwIfNotFound: true);
         m_Marker_Select = m_Marker.FindAction("Select", throwIfNotFound: true);
         // Item
         m_Item = asset.FindActionMap("Item", throwIfNotFound: true);
         m_Item_SelectFirst = m_Item.FindAction("Select First", throwIfNotFound: true);
         m_Item_SelectSecond = m_Item.FindAction("Select Second", throwIfNotFound: true);
         m_Item_SelectThird = m_Item.FindAction("Select Third", throwIfNotFound: true);
+        m_Item_SelectFourth = m_Item.FindAction("Select Fourth", throwIfNotFound: true);
+        m_Item_SelectFifth = m_Item.FindAction("Select Fifth", throwIfNotFound: true);
+        m_Item_SelectSixth = m_Item.FindAction("Select Sixth", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -317,13 +412,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     // Marker
     private readonly InputActionMap m_Marker;
     private List<IMarkerActions> m_MarkerActionsCallbackInterfaces = new List<IMarkerActions>();
-    private readonly InputAction m_Marker_Move;
+    private readonly InputAction m_Marker_MoveKeyboard;
+    private readonly InputAction m_Marker_MoveCursor;
     private readonly InputAction m_Marker_Select;
     public struct MarkerActions
     {
         private @PlayerInput m_Wrapper;
         public MarkerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Marker_Move;
+        public InputAction @MoveKeyboard => m_Wrapper.m_Marker_MoveKeyboard;
+        public InputAction @MoveCursor => m_Wrapper.m_Marker_MoveCursor;
         public InputAction @Select => m_Wrapper.m_Marker_Select;
         public InputActionMap Get() { return m_Wrapper.m_Marker; }
         public void Enable() { Get().Enable(); }
@@ -334,9 +431,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MarkerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MarkerActionsCallbackInterfaces.Add(instance);
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
+            @MoveKeyboard.started += instance.OnMoveKeyboard;
+            @MoveKeyboard.performed += instance.OnMoveKeyboard;
+            @MoveKeyboard.canceled += instance.OnMoveKeyboard;
+            @MoveCursor.started += instance.OnMoveCursor;
+            @MoveCursor.performed += instance.OnMoveCursor;
+            @MoveCursor.canceled += instance.OnMoveCursor;
             @Select.started += instance.OnSelect;
             @Select.performed += instance.OnSelect;
             @Select.canceled += instance.OnSelect;
@@ -344,9 +444,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IMarkerActions instance)
         {
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
+            @MoveKeyboard.started -= instance.OnMoveKeyboard;
+            @MoveKeyboard.performed -= instance.OnMoveKeyboard;
+            @MoveKeyboard.canceled -= instance.OnMoveKeyboard;
+            @MoveCursor.started -= instance.OnMoveCursor;
+            @MoveCursor.performed -= instance.OnMoveCursor;
+            @MoveCursor.canceled -= instance.OnMoveCursor;
             @Select.started -= instance.OnSelect;
             @Select.performed -= instance.OnSelect;
             @Select.canceled -= instance.OnSelect;
@@ -374,6 +477,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Item_SelectFirst;
     private readonly InputAction m_Item_SelectSecond;
     private readonly InputAction m_Item_SelectThird;
+    private readonly InputAction m_Item_SelectFourth;
+    private readonly InputAction m_Item_SelectFifth;
+    private readonly InputAction m_Item_SelectSixth;
     public struct ItemActions
     {
         private @PlayerInput m_Wrapper;
@@ -381,6 +487,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @SelectFirst => m_Wrapper.m_Item_SelectFirst;
         public InputAction @SelectSecond => m_Wrapper.m_Item_SelectSecond;
         public InputAction @SelectThird => m_Wrapper.m_Item_SelectThird;
+        public InputAction @SelectFourth => m_Wrapper.m_Item_SelectFourth;
+        public InputAction @SelectFifth => m_Wrapper.m_Item_SelectFifth;
+        public InputAction @SelectSixth => m_Wrapper.m_Item_SelectSixth;
         public InputActionMap Get() { return m_Wrapper.m_Item; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -399,6 +508,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SelectThird.started += instance.OnSelectThird;
             @SelectThird.performed += instance.OnSelectThird;
             @SelectThird.canceled += instance.OnSelectThird;
+            @SelectFourth.started += instance.OnSelectFourth;
+            @SelectFourth.performed += instance.OnSelectFourth;
+            @SelectFourth.canceled += instance.OnSelectFourth;
+            @SelectFifth.started += instance.OnSelectFifth;
+            @SelectFifth.performed += instance.OnSelectFifth;
+            @SelectFifth.canceled += instance.OnSelectFifth;
+            @SelectSixth.started += instance.OnSelectSixth;
+            @SelectSixth.performed += instance.OnSelectSixth;
+            @SelectSixth.canceled += instance.OnSelectSixth;
         }
 
         private void UnregisterCallbacks(IItemActions instance)
@@ -412,6 +530,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SelectThird.started -= instance.OnSelectThird;
             @SelectThird.performed -= instance.OnSelectThird;
             @SelectThird.canceled -= instance.OnSelectThird;
+            @SelectFourth.started -= instance.OnSelectFourth;
+            @SelectFourth.performed -= instance.OnSelectFourth;
+            @SelectFourth.canceled -= instance.OnSelectFourth;
+            @SelectFifth.started -= instance.OnSelectFifth;
+            @SelectFifth.performed -= instance.OnSelectFifth;
+            @SelectFifth.canceled -= instance.OnSelectFifth;
+            @SelectSixth.started -= instance.OnSelectSixth;
+            @SelectSixth.performed -= instance.OnSelectSixth;
+            @SelectSixth.canceled -= instance.OnSelectSixth;
         }
 
         public void RemoveCallbacks(IItemActions instance)
@@ -431,7 +558,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public ItemActions @Item => new ItemActions(this);
     public interface IMarkerActions
     {
-        void OnMove(InputAction.CallbackContext context);
+        void OnMoveKeyboard(InputAction.CallbackContext context);
+        void OnMoveCursor(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
     }
     public interface IItemActions
@@ -439,5 +567,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSelectFirst(InputAction.CallbackContext context);
         void OnSelectSecond(InputAction.CallbackContext context);
         void OnSelectThird(InputAction.CallbackContext context);
+        void OnSelectFourth(InputAction.CallbackContext context);
+        void OnSelectFifth(InputAction.CallbackContext context);
+        void OnSelectSixth(InputAction.CallbackContext context);
     }
 }

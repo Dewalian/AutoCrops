@@ -5,8 +5,9 @@ using UnityEngine.Tilemaps;
 public class Area : MonoBehaviour
 {
     
-    [SerializeField] private TileBase tile;
-    private Dirt[,] grid;
+    [SerializeField] private TileBase soilTile;
+    [SerializeField] private TileBase dirtTile;
+    private Soil[,] grid;
     private Tilemap tilemap;
     public int width;
     public int height;
@@ -23,12 +24,19 @@ public class Area : MonoBehaviour
 
     private void Init()
     {
-        grid = new Dirt[width, height];
+        grid = new Soil[width, height];
 
-        for(int x=0; x<width; x++){
-            for(int y=0; y<height; y++){
-                tilemap.SetTile(new Vector3Int(x, y, 0), tile);
-                grid[x, y] = new Dirt(DirtState.Empty, null);
+        for(int x=-1; x<width+1; x++){
+            for(int y=-1; y<height+1; y++){
+
+                if(x >= 0 && x < width && y >= 0 && y < height){
+                    grid[x, y] = new Soil(SoilState.Empty, null);
+                    tilemap.SetTile(new Vector3Int(x, y, 0), soilTile);
+                }
+                else{
+                    tilemap.SetTile(new Vector3Int(x, y, 0), dirtTile);
+                }
+
             }
         }
 
@@ -45,7 +53,7 @@ public class Area : MonoBehaviour
         return tilemap.GetCellCenterWorld(tile);
     }
 
-    public bool CheckBound(Vector3Int tile)
+    public bool CheckTileBound(Vector3Int tile)
     {
         if(tile.x < 0 || tile.x > width-1){
             return false;
@@ -58,12 +66,25 @@ public class Area : MonoBehaviour
         return true;
     }
 
-    public Dirt GetDirt(Vector3Int tile)
+    public bool CheckBound(Vector3 pos)
+    {
+        if(pos.x < 0 || pos.x > width){
+            return false;
+        }
+
+        if(pos.y < 0 || pos.y > height){
+            return false;
+        }
+
+        return true;
+    }
+
+    public Soil GetDirt(Vector3Int tile)
     {
         return grid[tile.x, tile.y];
     }
 
-    public void SetDirt(Vector3Int tile, DirtState dirtState, GameObject crop)
+    public void SetDirt(Vector3Int tile, SoilState dirtState, Crop crop)
     {
         grid[tile.x, tile.y].dirtState = dirtState;
         grid[tile.x, tile.y].crop = crop;

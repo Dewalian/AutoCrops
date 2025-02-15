@@ -1,94 +1,80 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
+using UnityEngine.Pool;
 
 public class Marker : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
-    private Vector3Int currTile;
+    [SerializeField] private Area area;
+    private Sprite icon;
     private Crop selectedCrop;
-    private Area area;
-    private PlayerInput playerInput;
-    private InputAction movement;
-    public UnityEvent OnClick;
-    public Action OnPress;
+    private Vector3Int currTile;
+    private IObjectPool<Crop> cropPool;
+    public Action<Sprite> OnSetCrop;
 
     private void Awake()
     {
-        playerInput = new PlayerInput();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        cropPool = new ObjectPool<Crop>(CreateCrop, OnGetCrop, OnReleaseCrop, maxSize: 25);
     }
 
-    private void OnEnable()
+    private Crop CreateCrop()
     {
-        movement = playerInput.Marker.Move;
-        movement.performed += Movement;
-        movement.Enable();
+        GameObject cropObj = Instantiate(selectedCrop.gameObject, area.GetTileCenter(currTile), Quaternion.identity);
+        Crop crop = cropObj.GetComponent<Crop>();
 
-        playerInput.Marker.Select.performed += SelectTile;
-        playerInput.Marker.Select.Enable();
+        crop.Init(area, currTile);
+        area.SetDirt(currTile, SoilState.Occupied, crop);
+
+        return crop;
     }
 
-    private void OnDisable()
+    private void OnGetCrop(Crop crop)
     {
-        movement.Disable();
-        playerInput.Marker.Select.Disable();
+        crop.gameObject.SetActive(true);
+        crop.transform.position = area.GetTileCenter(currTile);
+
+        crop.Init(area, currTile);
+        area.SetDirt(currTile, SoilState.Occupied, crop);
     }
 
-    private void Start()
+    private void OnReleaseCrop(Crop crop)
     {
-        area = GetComponentInParent<Area>();
-        Init();
+        crop.gameObject.SetActive(false);
+        area.SetDirt(currTile, SoilState.Empty, null);
     }
 
-    private void Movement(InputAction.CallbackContext input)
+    public void PlantCrop(Vector3Int tile)
     {
-        Vector3Int nextTile = area.GetTile(transform.position + (Vector3)input.ReadValue<Vector2>());
-        bool isInBound = area.CheckBound(nextTile);
-
-        if(isInBound){
-            transform.position += (Vector3)input.ReadValue<Vector2>();
-            currTile = area.GetTile(transform.position);
+        currTile = tile;
+        SoilState dirtState = area.GetDirt(currTile).dirtState;
+        
+        if(dirtState == SoilState.Ready)
+        {
+            Crop crop = area.GetDirt(currTile).crop;
+            cropPool.Release(crop);
         }
-    }
-
-    private void SelectTile(InputAction.CallbackContext input)
-    {
-        DirtState dirtState = area.GetDirt(currTile).dirtState;
-        if(selectedCrop == null || dirtState == DirtState.Occupied){
+        else if(selectedCrop == null)
+        {
+            Debug.Log("no crop selected");
+        }
+        else if(dirtState == SoilState.Occupied){
             Debug.Log("occupied");
         }
-        else if(dirtState == DirtState.Ready)
-        {
-            GameObject crop = area.GetDirt(currTile).crop;
-            Destroy(crop);
-        }
         else{
-            GameObject cropObj = Instantiate(selectedCrop.gameObject, transform.position, Quaternion.identity);
-            cropObj.GetComponent<Crop>().Init(area, currTile);
-            area.SetDirt(currTile, DirtState.Occupied, cropObj);
+            cropPool.Get();
         }
-    }
-
-    private void Init()
-    {
-        Vector3Int pos = new Vector3Int(area.width / 2, area.height / 2, 0);
-        Vector3 posCenter = area.GetTileCenter(pos);
-        transform.position = posCenter;
-        currTile = area.GetTile(transform.position);
     }
 
     public void SetCrop(Crop crop)
     {
         if(crop == null){
             selectedCrop = null;
-            spriteRenderer.sprite = null;
-
-            return;
+            icon = null;
         }
-        
-        selectedCrop = crop;
-        spriteRenderer.sprite = crop.GetSeedIcon();
+        else{
+            selectedCrop = crop;
+            icon = crop.GetSeedIcon();
+        }
+
+        OnSetCrop?.Invoke(icon);
     }
 }

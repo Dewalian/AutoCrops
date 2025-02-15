@@ -44,8 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2733be9526e6414085ba50b6a9f95e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxCapacity: 0
   crops:
-  - {fileID: 7361887011749611859, guid: 252736562224bf349a67ec76867c75c3, type: 3}
-  - {fileID: 7361887011749611859, guid: bfaf3e8f88b125144a03ade6550cac75, type: 3}
-  - {fileID: 7361887011749611859, guid: 65e7262e822a7734dbc50304f0bc7980, type: 3}
+  - {fileID: 3522775301140871482, guid: 51abe82b82af16d459bd6492d01b63f8, type: 3}
+  - {fileID: 3522775301140871482, guid: 923a950cfa705bc4f9a159eb7e422cb1, type: 3}
+  - {fileID: 3522775301140871482, guid: 794eb3b864789614db95a8d275ad02cd, type: 3}
+  - {fileID: 3522775301140871482, guid: 49866134b4cb4f546a146bfd5b8dcd0a, type: 3}
+  - {fileID: 3522775301140871482, guid: 3c2abb0f661fc0f4b9c7ef183ca5ebf7, type: 3}
+  - {fileID: 3522775301140871482, guid: e04c429a89892ca46adbc7db53a3ce3b, type: 3}
   marker: {fileID: 0}

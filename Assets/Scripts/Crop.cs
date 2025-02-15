@@ -11,18 +11,25 @@ public class Crop : MonoBehaviour
     private int phase;
     private float timerThird;
     private float timerThirdCopy;
+    private bool isReady;
+    public Action<float> OnTimePassed;
+    public Action OnReady;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Start()
+    void OnEnable()
     {
+        isReady = false;
+
         timerThird = stats.time / 3;
         timerThirdCopy = timerThird;
+
         phase = 0;
         spriteRenderer.sprite = stats.icons[phase];
+        secondsPassed = 0;
     }
 
     public void Init(Area area, Vector3Int tile)
@@ -51,14 +58,35 @@ public class Crop : MonoBehaviour
         secondsPassed += Time.deltaTime;
 
         if(secondsPassed >= stats.time){
+            OnReady?.Invoke();
+            isReady = true;
+
             spriteRenderer.sprite = stats.readyIcon;
-            area.SetDirt(tile, DirtState.Ready, gameObject);
+            area.SetDirt(tile, SoilState.Ready, this);
+
             return;
         }
+
+        OnTimePassed?.Invoke(secondsPassed);
     }
 
     public Sprite GetSeedIcon()
     {
         return stats.seedIcon;
+    }
+
+    public Sprite GetReadyIcon()
+    {
+        return stats.readyIcon;
+    }
+
+    public CropStatsSO GetStats()
+    {
+        return stats;
+    }
+
+    public bool IsReady()
+    {
+        return isReady;
     }
 }

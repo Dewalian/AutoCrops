@@ -47,6 +47,9 @@ TagManager:
   - name: Crop
     uniqueID: 3139575453
     locked: 0
+  - name: UI
+    uniqueID: 297217003
+    locked: 0
   - name: Cursor
     uniqueID: 2495130941
     locked: 0
