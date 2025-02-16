@@ -20,4 +20,5 @@ MonoBehaviour:
   - {fileID: 4475564145210681097, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
   readyIcon: {fileID: 6491916475305925652, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
   time: 5
-  basePrice: 100
+  cost: 10
+  price: 15

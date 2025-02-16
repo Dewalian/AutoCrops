@@ -236,6 +236,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Select Fertilizer",
+                    "type": "Button",
+                    "id": "1ee86e93-0ccb-4989-be0a-2b7908c08419",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -302,6 +311,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Select Sixth",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fd556401-65df-4fdf-86c7-d3d1f5a90d7e",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Fertilizer",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

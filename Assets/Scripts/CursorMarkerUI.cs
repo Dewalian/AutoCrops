@@ -26,9 +26,8 @@ public class CursorMarkerUI : MarkerUI
 
         if(isInBound){
             Vector3Int tile = area.GetTile(mousePos);
-            Crop crop = area.GetDirt(tile).crop;
 
-            if(crop != null && crop.IsReady()){
+            if(area.GetSoil(tile).soilState == SoilState.Ready){
                 spriteRenderer.sprite = openHand;
             }
             else{
@@ -53,8 +52,7 @@ public class CursorMarkerUI : MarkerUI
     {
         if(isInBound){
             Vector3Int tile = area.GetTile(mousePos);
-            marker.PlantCrop(tile);
+            marker.ActivateItem(tile);
         }
-
     }
 }

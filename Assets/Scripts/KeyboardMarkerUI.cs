@@ -35,9 +35,7 @@ public class KeyboardMarkerUI : MarkerUI
 
     protected override void DetectTile()
     {
-        Crop crop = area.GetDirt(currTile).crop;
-
-        if(crop != null && crop.IsReady()){
+        if(area.GetSoil(currTile).soilState == SoilState.Ready){
             spriteRenderer.sprite = openHand;
         }
         else{
@@ -66,6 +64,6 @@ public class KeyboardMarkerUI : MarkerUI
 
     protected override void SelectTile(InputAction.CallbackContext input)
     {
-        marker.PlantCrop(currTile);
+        marker.ActivateItem(currTile);
     }
 }

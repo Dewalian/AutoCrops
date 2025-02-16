@@ -5,11 +5,12 @@ using UnityEngine.Pool;
 public class Marker : MonoBehaviour
 {
     [SerializeField] private Area area;
+    private IObjectPool<Crop> cropPool;
     private Sprite icon;
+    private Item selectedItem;
     private Crop selectedCrop;
     private Vector3Int currTile;
-    private IObjectPool<Crop> cropPool;
-    public Action<Sprite> OnSetCrop;
+    public Action<Sprite> OnSetItem;
 
     private void Awake()
     {
@@ -42,39 +43,46 @@ public class Marker : MonoBehaviour
         area.SetDirt(currTile, SoilState.Empty, null);
     }
 
-    public void PlantCrop(Vector3Int tile)
+    public void ActivateItem(Vector3Int tile)
     {
         currTile = tile;
-        SoilState dirtState = area.GetDirt(currTile).dirtState;
-        
-        if(dirtState == SoilState.Ready)
-        {
-            Crop crop = area.GetDirt(currTile).crop;
+        if(area.GetSoil(currTile).soilState == SoilState.Ready){
+            Crop crop = area.GetSoil(currTile).crop;
             cropPool.Release(crop);
         }
-        else if(selectedCrop == null)
-        {
-            Debug.Log("no crop selected");
-        }
-        else if(dirtState == SoilState.Occupied){
-            Debug.Log("occupied");
-        }
-        else{
-            cropPool.Get();
+        else if(selectedItem != null){  
+            selectedItem.Activate(currTile);
         }
     }
 
-    public void SetCrop(Crop crop)
+    public void SetCropSpawner(Item item, Crop crop)
     {
-        if(crop == null){
-            selectedCrop = null;
+        if(item == null){
+            selectedItem = null;
+            icon = null;
+        }
+        else if(item != null && item.TryGetComponent(out CropSpawner cropSpawner)){
+            selectedItem = item;
+            selectedCrop = crop;
+
+            icon = selectedCrop.GetMarkerIcon();
+            cropSpawner.SetCrop(selectedCrop, cropPool);
+        }
+
+        OnSetItem?.Invoke(icon);
+    }
+
+    public void SetItem(Item item)
+    {
+        if(item == null){
+            selectedItem = null;
             icon = null;
         }
         else{
-            selectedCrop = crop;
-            icon = crop.GetSeedIcon();
+            selectedItem = item;
+            icon = item.GetMarkerIcon();
         }
 
-        OnSetCrop?.Invoke(icon);
+        OnSetItem?.Invoke(icon);
     }
 }

@@ -258,6 +258,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select Fertilizer"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ee86e93-0ccb-4989-be0a-2b7908c08419"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -326,6 +335,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Select Sixth"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd556401-65df-4fdf-86c7-d3d1f5a90d7e"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select Fertilizer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -345,6 +365,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Item_SelectFourth = m_Item.FindAction("Select Fourth", throwIfNotFound: true);
         m_Item_SelectFifth = m_Item.FindAction("Select Fifth", throwIfNotFound: true);
         m_Item_SelectSixth = m_Item.FindAction("Select Sixth", throwIfNotFound: true);
+        m_Item_SelectFertilizer = m_Item.FindAction("Select Fertilizer", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -480,6 +501,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Item_SelectFourth;
     private readonly InputAction m_Item_SelectFifth;
     private readonly InputAction m_Item_SelectSixth;
+    private readonly InputAction m_Item_SelectFertilizer;
     public struct ItemActions
     {
         private @PlayerInput m_Wrapper;
@@ -490,6 +512,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @SelectFourth => m_Wrapper.m_Item_SelectFourth;
         public InputAction @SelectFifth => m_Wrapper.m_Item_SelectFifth;
         public InputAction @SelectSixth => m_Wrapper.m_Item_SelectSixth;
+        public InputAction @SelectFertilizer => m_Wrapper.m_Item_SelectFertilizer;
         public InputActionMap Get() { return m_Wrapper.m_Item; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -517,6 +540,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SelectSixth.started += instance.OnSelectSixth;
             @SelectSixth.performed += instance.OnSelectSixth;
             @SelectSixth.canceled += instance.OnSelectSixth;
+            @SelectFertilizer.started += instance.OnSelectFertilizer;
+            @SelectFertilizer.performed += instance.OnSelectFertilizer;
+            @SelectFertilizer.canceled += instance.OnSelectFertilizer;
         }
 
         private void UnregisterCallbacks(IItemActions instance)
@@ -539,6 +565,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SelectSixth.started -= instance.OnSelectSixth;
             @SelectSixth.performed -= instance.OnSelectSixth;
             @SelectSixth.canceled -= instance.OnSelectSixth;
+            @SelectFertilizer.started -= instance.OnSelectFertilizer;
+            @SelectFertilizer.performed -= instance.OnSelectFertilizer;
+            @SelectFertilizer.canceled -= instance.OnSelectFertilizer;
         }
 
         public void RemoveCallbacks(IItemActions instance)
@@ -570,5 +599,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSelectFourth(InputAction.CallbackContext context);
         void OnSelectFifth(InputAction.CallbackContext context);
         void OnSelectSixth(InputAction.CallbackContext context);
+        void OnSelectFertilizer(InputAction.CallbackContext context);
     }
 }

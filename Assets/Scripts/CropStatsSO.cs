@@ -8,5 +8,6 @@ public class CropStatsSO : ScriptableObject
     public Sprite[] icons;
     public Sprite readyIcon;
     public float time;
-    public float basePrice;
+    public float cost;
+    public float price;
 }

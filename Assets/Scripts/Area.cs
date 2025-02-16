@@ -79,14 +79,14 @@ public class Area : MonoBehaviour
         return true;
     }
 
-    public Soil GetDirt(Vector3Int tile)
+    public Soil GetSoil(Vector3Int tile)
     {
         return grid[tile.x, tile.y];
     }
 
     public void SetDirt(Vector3Int tile, SoilState dirtState, Crop crop)
     {
-        grid[tile.x, tile.y].dirtState = dirtState;
+        grid[tile.x, tile.y].soilState = dirtState;
         grid[tile.x, tile.y].crop = crop;
     }
 }

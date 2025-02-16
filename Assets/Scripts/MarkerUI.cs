@@ -18,7 +18,7 @@ public abstract class MarkerUI : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         Cursor.visible = false;
 
-        marker.OnSetCrop += ChangeIcon;
+        marker.OnSetItem += ChangeIcon;
 
         playerInput = new PlayerInput();
         keyboardMovement = playerInput.Marker.MoveKeyboard;

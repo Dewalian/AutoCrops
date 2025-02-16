@@ -5,9 +5,10 @@ public class Crop : MonoBehaviour
 {
     [SerializeField] private CropStatsSO stats;
     private Area area;
-    private Vector3Int tile;
-    private float secondsPassed;
     private SpriteRenderer spriteRenderer;
+    private Vector3Int tile;
+    private float quality;
+    private float secondsPassed;
     private int phase;
     private float timerThird;
     private float timerThirdCopy;
@@ -20,9 +21,10 @@ public class Crop : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         isReady = false;
+        quality = 50;
 
         timerThird = stats.time / 3;
         timerThirdCopy = timerThird;
@@ -30,6 +32,15 @@ public class Crop : MonoBehaviour
         phase = 0;
         spriteRenderer.sprite = stats.icons[phase];
         secondsPassed = 0;
+
+        GoldManager.instance.AddGold(-stats.cost);
+    }
+
+    private void OnDisable()
+    {
+        quality -= 50;
+        float price = stats.price + stats.price * quality / 20;
+        GoldManager.instance.AddGold(price);
     }
 
     public void Init(Area area, Vector3Int tile)
@@ -45,17 +56,9 @@ public class Crop : MonoBehaviour
 
     private void Timer()
     {
-        if(secondsPassed >= stats.time){
+        if(isReady){
             return;
         }
-
-        if(secondsPassed > timerThird){
-            timerThird += timerThirdCopy;
-            phase++;
-            spriteRenderer.sprite = stats.icons[phase];
-        }
-
-        secondsPassed += Time.deltaTime;
 
         if(secondsPassed >= stats.time){
             OnReady?.Invoke();
@@ -67,15 +70,29 @@ public class Crop : MonoBehaviour
             return;
         }
 
+        if(secondsPassed > timerThird){
+            timerThird += timerThirdCopy;
+            phase++;
+            spriteRenderer.sprite = stats.icons[phase];
+        }
+
+        secondsPassed += Time.deltaTime;
+
         OnTimePassed?.Invoke(secondsPassed);
     }
 
-    public Sprite GetSeedIcon()
+    public void Fertilize(float timerBoost, float qualityBoost)
+    {
+        secondsPassed += timerBoost;
+        quality += qualityBoost;
+    }
+
+    public Sprite GetMarkerIcon()
     {
         return stats.seedIcon;
     }
 
-    public Sprite GetReadyIcon()
+    public Sprite GetInventoryIcon()
     {
         return stats.readyIcon;
     }
@@ -83,10 +100,5 @@ public class Crop : MonoBehaviour
     public CropStatsSO GetStats()
     {
         return stats;
-    }
-
-    public bool IsReady()
-    {
-        return isReady;
     }
 }

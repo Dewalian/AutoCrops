@@ -8,11 +8,11 @@ public enum SoilState
 
 public class Soil
 {
-    public SoilState dirtState;
+    public SoilState soilState;
     public Crop crop;
     public Soil(SoilState dirtState, Crop crop)
     {
-        this.dirtState = dirtState;
+        this.soilState = dirtState;
         this.crop = crop;
     }
 }

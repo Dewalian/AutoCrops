@@ -6,14 +6,14 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Inventory inventory;
     [SerializeField] private Transform selectUI;
-    [SerializeField] private Image[] images;
+    [SerializeField] private GameObject[] unlockedFrames;
+    [SerializeField] private GameObject[] lockedFrames;
     private int currIndex;
-    private int cropCount;
 
     private void OnEnable()
     {
-        inventory.OnAddCrop += AddCrop;
-        inventory.OnSelectCrop += SelectCrop;
+        inventory.OnSelectItem += SelectItem;
+        inventory.OnUnlockCrop += UnlockFrame;
     }
 
     private void Start()
@@ -21,26 +21,22 @@ public class InventoryUI : MonoBehaviour
         currIndex = -1;
     }
 
-    private void AddCrop(Crop crop)
+    public void SelectItem(int index)
     {
-        cropCount++;
-        Image image = images[cropCount-1];
-        image.sprite = crop.GetReadyIcon();
-        image.SetNativeSize();
-        image.gameObject.SetActive(true);
-    }
-
-    public void SelectCrop(int index)
-    {
-        Debug.Log(index + " " + currIndex);
         if(index == currIndex){
             selectUI.gameObject.SetActive(false);
             currIndex = -1;
         }
         else{
             selectUI.gameObject.SetActive(true);
-            selectUI.position = images[index].transform.position;
+            selectUI.position = unlockedFrames[index].transform.position;
             currIndex = index;
         }
+    }
+
+    public void UnlockFrame(int index)
+    {
+        lockedFrames[index].SetActive(false);
+        unlockedFrames[index].SetActive(true);
     }
 }

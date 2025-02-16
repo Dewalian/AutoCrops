@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private int maxCapacity;
     [SerializeField] private List<Crop> crops;
     [SerializeField] private Marker marker;
+    [SerializeField] private Item cropSpawner;
+    [SerializeField] private Item fertilizer;
+    private int cropCount;
+    private int selectedIndex;
     private Crop selectedCrop;
     private PlayerInput playerInput;
     public Action<Crop> OnAddCrop;
-    public Action<int> OnSelectCrop;
+    public Action<int> OnSelectItem;
+    public Action<int> OnUnlockCrop;
 
     private void Awake()
     {
@@ -19,23 +23,26 @@ public class Inventory : MonoBehaviour
 
     private void OnEnable()
     {
-        playerInput.Item.SelectFirst.performed += (input) => SelectCrop(0);
+        playerInput.Item.SelectFirst.performed += (input) => SelectCropSpawner(0);
         playerInput.Item.SelectFirst.Enable();
         
-        playerInput.Item.SelectSecond.performed += (input) => SelectCrop(1);
+        playerInput.Item.SelectSecond.performed += (input) => SelectCropSpawner(1);
         playerInput.Item.SelectSecond.Enable();
 
-        playerInput.Item.SelectThird.performed += (input) => SelectCrop(2);
+        playerInput.Item.SelectThird.performed += (input) => SelectCropSpawner(2);
         playerInput.Item.SelectThird.Enable();
 
-        playerInput.Item.SelectFourth.performed += (input) => SelectCrop(3);
+        playerInput.Item.SelectFourth.performed += (input) => SelectCropSpawner(3);
         playerInput.Item.SelectFourth.Enable();
 
-        playerInput.Item.SelectFifth.performed += (input) => SelectCrop(4);
+        playerInput.Item.SelectFifth.performed += (input) => SelectCropSpawner(4);
         playerInput.Item.SelectFifth.Enable();
 
-        playerInput.Item.SelectSixth.performed += (input) => SelectCrop(5);
+        playerInput.Item.SelectSixth.performed += (input) => SelectCropSpawner(5);
         playerInput.Item.SelectSixth.Enable();
+
+        playerInput.Item.SelectFertilizer.performed += (input) => SelectFertilizer(6);
+        playerInput.Item.SelectFertilizer.Enable();
     }
 
     private void OnDisable()
@@ -50,29 +57,57 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
+        selectedIndex = -1;
+
         foreach(Crop c in crops)
         {
             OnAddCrop?.Invoke(c);
         }
     }
 
-    private void AddCrop(Crop crop)
+    public void SelectCropSpawner(int index)
     {
-        crops.Add(crop);
-        OnAddCrop?.Invoke(crop);
-    }
+        if(index+1 > cropCount){
+            return;
+        }
 
-    public void SelectCrop(int index)
-    {
-        if(selectedCrop == crops[index]){
+        if(selectedIndex == index){
             selectedCrop = null;
-            marker.SetCrop(null);
+            marker.SetItem(null);
+
+            selectedIndex = -1;
         }
         else{
             selectedCrop = crops[index];
-            marker.SetCrop(selectedCrop);
+            marker.SetCropSpawner(cropSpawner, selectedCrop);
+
+            selectedIndex = index;
         }
 
-        OnSelectCrop?.Invoke(index);
+        OnSelectItem?.Invoke(index);
+    }
+
+    public void SelectFertilizer(int index)
+    {
+        if(selectedIndex == index){
+            marker.SetItem(null);
+            selectedIndex = -1;
+        }
+        else{
+            marker.SetItem(fertilizer);
+            selectedIndex = index;
+        }
+
+        OnSelectItem?.Invoke(index);
+    }
+
+    public void UnlockCrop(int index)
+    {
+        if(index > cropCount){
+            return;
+        }
+
+        cropCount++;
+        OnUnlockCrop?.Invoke(index);
     }
 }
