@@ -108,8 +108,16 @@ public class Inventory : MonoBehaviour
             return;
         }
 
+        Crop crop = crops[index];
+        int unlockCost = crop.GetStats().unlockCost;
+        if(GoldManager.instance.gold < unlockCost){
+            Debug.Log("not enough money");
+            return;
+        }
+
         cropCount++;
-        unlockedCrops.Add(crops[index]);
+        unlockedCrops.Add(crop);
+        GoldManager.instance.AddGold(-unlockCost);
         
         OnUnlockCrop?.Invoke(index);
     }

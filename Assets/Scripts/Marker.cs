@@ -5,50 +5,50 @@ using UnityEngine.Pool;
 public class Marker : MonoBehaviour
 {
     [SerializeField] private Area area;
-    private IObjectPool<Crop> cropPool;
+    // private IObjectPool<Crop> cropPool;
     private Sprite icon;
     private Item selectedItem;
     private Crop selectedCrop;
     private Vector3Int currTile;
     public Action<Sprite> OnSetItem;
 
-    private void Awake()
-    {
-        cropPool = new ObjectPool<Crop>(CreateCrop, OnGetCrop, OnReleaseCrop);
-    }
+    // private void Awake()
+    // {
+    //     cropPool = new ObjectPool<Crop>(CreateCrop, OnGetCrop, OnReleaseCrop);
+    // }
 
-    private Crop CreateCrop()
-    {
-        GameObject cropObj = Instantiate(selectedCrop.gameObject, area.GetTileCenter(currTile), Quaternion.identity);
-        Crop crop = cropObj.GetComponent<Crop>();
+    // private Crop CreateCrop()
+    // {
+    //     GameObject cropObj = Instantiate(selectedCrop.gameObject, area.GetTileCenter(currTile), Quaternion.identity);
+    //     Crop crop = cropObj.GetComponent<Crop>();
 
-        crop.Init(area, currTile);
-        area.SetDirt(currTile, SoilState.Occupied, crop);
+    //     crop.Init(area, currTile);
+    //     area.SetDirt(currTile, SoilState.Occupied, crop);
 
-        return crop;
-    }
+    //     return crop;
+    // }
 
-    private void OnGetCrop(Crop crop)
-    {
-        crop.gameObject.SetActive(true);
-        crop.transform.position = area.GetTileCenter(currTile);
+    // private void OnGetCrop(Crop crop)
+    // {
+    //     crop.gameObject.SetActive(true);
+    //     crop.transform.position = area.GetTileCenter(currTile);
 
-        crop.Init(area, currTile);
-        area.SetDirt(currTile, SoilState.Occupied, crop);
-    }
+    //     crop.Init(area, currTile);
+    //     area.SetDirt(currTile, SoilState.Occupied, crop);
+    // }
 
-    private void OnReleaseCrop(Crop crop)
-    {
-        crop.gameObject.SetActive(false);
-        area.SetDirt(currTile, SoilState.Empty, null);
-    }
+    // private void OnReleaseCrop(Crop crop)
+    // {
+    //     crop.gameObject.SetActive(false);
+    //     area.SetDirt(currTile, SoilState.Empty, null);
+    // }
 
     public void ActivateItem(Vector3Int tile)
     {
         currTile = tile;
         if(area.GetSoil(currTile).soilState == SoilState.Ready){
-            Crop crop = area.GetSoil(currTile).crop;
-            cropPool.Release(crop);
+            GameObject cropObj = area.GetSoil(tile).crop.gameObject;
+            Destroy(cropObj);
         }
         else if(selectedItem != null){  
             selectedItem.Activate(currTile);
@@ -66,7 +66,7 @@ public class Marker : MonoBehaviour
             selectedCrop = crop;
 
             icon = selectedCrop.GetMarkerIcon();
-            cropSpawner.SetCrop(selectedCrop, cropPool);
+            cropSpawner.SetCrop(selectedCrop);
         }
 
         OnSetItem?.Invoke(icon);

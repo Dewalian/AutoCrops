@@ -7,6 +7,6 @@ public class HouseSO : ScriptableObject
     public int unlockCost;
     public int upgradeCost;
     public int costIncrement;
-    public int cd;
-    public int cdDecrement;
+    public float cd;
+    public float cdDecrement;
 }

@@ -21,26 +21,27 @@ public class Crop : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OnEnable()
-    {
-        isReady = false;
-        quality = 50;
-
-        timerThird = stats.time / 3;
-        timerThirdCopy = timerThird;
-
-        phase = 0;
-        spriteRenderer.sprite = stats.icons[phase];
-        secondsPassed = 0;
-
-        GoldManager.instance.AddGold(-stats.cost);
-    }
-
     private void OnDisable()
     {
         quality -= 50;
         int price = stats.price + Mathf.FloorToInt(stats.price * quality / 20);
         GoldManager.instance.AddGold(price);
+
+        area.SetSoil(tile, SoilState.Empty, null);
+    }
+
+    private void Start()
+    {
+        area.SetSoil(tile, SoilState.Occupied, this);
+
+        quality = 50;
+
+        timerThird = stats.time / 3;
+        timerThirdCopy = timerThird;
+
+        spriteRenderer.sprite = stats.icons[phase];
+
+        GoldManager.instance.AddGold(-stats.cost);
     }
 
     public void Init(Area area, Vector3Int tile)
@@ -65,7 +66,7 @@ public class Crop : MonoBehaviour
             isReady = true;
 
             spriteRenderer.sprite = stats.readyIcon;
-            area.SetDirt(tile, SoilState.Ready, this);
+            area.SetSoil(tile, SoilState.Ready, this);
 
             return;
         }

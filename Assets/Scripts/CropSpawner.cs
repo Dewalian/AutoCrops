@@ -1,15 +1,12 @@
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class CropSpawner : Item
 {
     private Crop crop;
-    private IObjectPool<Crop> cropPool;
 
-    public void SetCrop(Crop crop, IObjectPool<Crop> cropPool)
+    public void SetCrop(Crop crop)
     {
         this.crop = crop;
-        this.cropPool = cropPool;
     }
     
     public override void Activate(Vector3Int tile)
@@ -20,8 +17,8 @@ public class CropSpawner : Item
         
         if(dirtState == SoilState.Ready)
         {
-            Crop crop = area.GetSoil(tile).crop;
-            cropPool.Release(crop);
+            GameObject cropObj = area.GetSoil(tile).crop.gameObject;
+            Destroy(cropObj);
         }
         else if(crop == null)
         {
@@ -34,7 +31,8 @@ public class CropSpawner : Item
             Debug.Log("Not enough money");
         }
         else{
-            cropPool.Get();
+            Crop cropObj = Instantiate(crop, area.GetTileCenter(tile), Quaternion.identity);
+            cropObj.Init(area, tile);
         }
     }
 }

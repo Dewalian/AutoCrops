@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10699d23b7afc7045877b258ff5b32bc, type: 3}
-  m_Name: AutoPlant
+  m_Name: AutoFertilize
   m_EditorClassIdentifier: 
-  houseName: Auto Plant
-  unlockCost: 10
+  houseName: Auto Fertilize
+  unlockCost: 100
   upgradeCost: 20
-  costIncrement: 30
-  cd: 10
-  cdDecrement: 1
+  costIncrement: 50
+  cd: 2
+  cdDecrement: 0.1

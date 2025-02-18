@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10699d23b7afc7045877b258ff5b32bc, type: 3}
-  m_Name: AutoPlant
+  m_Name: AutoUpgrade
   m_EditorClassIdentifier: 
-  houseName: Auto Plant
+  houseName: Auto Upgrade
   unlockCost: 10
   upgradeCost: 20
   costIncrement: 30
-  cd: 10
+  cd: 1
   cdDecrement: 1
