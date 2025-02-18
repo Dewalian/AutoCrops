@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9555025a99269a4bbeab2651b655f69, type: 3}
+  m_Script: {fileID: 11500000, guid: 42afdf2f1572ffa41a8a84955f80962c, type: 3}
   m_Name: Onion
   m_EditorClassIdentifier: 
   cropName: Onion
@@ -19,5 +19,7 @@ MonoBehaviour:
   - {fileID: 7936929632667333882, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
   - {fileID: -824800127769178093, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
   readyIcon: {fileID: 7919750047730634564, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
-  time: 5
-  basePrice: 100
+  time: 50
+  unlockCost: 5000
+  cost: 30
+  price: 100

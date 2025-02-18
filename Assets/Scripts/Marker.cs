@@ -14,7 +14,7 @@ public class Marker : MonoBehaviour
 
     private void Awake()
     {
-        cropPool = new ObjectPool<Crop>(CreateCrop, OnGetCrop, OnReleaseCrop, maxSize: 25);
+        cropPool = new ObjectPool<Crop>(CreateCrop, OnGetCrop, OnReleaseCrop);
     }
 
     private Crop CreateCrop()

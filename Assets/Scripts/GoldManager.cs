@@ -4,17 +4,17 @@ using UnityEngine;
 public class GoldManager : MonoBehaviour
 {
     public static GoldManager instance = null;
-    public float gold;
-    public Action<float> OnAddGold;
+    public int gold;
+    public Action OnAddGold;
 
     private void Awake()
     {
         instance = this;
     }
 
-    public void AddGold(float amount)
+    public void AddGold(int amount)
     {
         gold += amount;
-        OnAddGold?.Invoke(amount);
+        OnAddGold?.Invoke();
     }
 }

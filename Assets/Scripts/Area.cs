@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class Area : MonoBehaviour
 {
@@ -53,26 +55,13 @@ public class Area : MonoBehaviour
         return tilemap.GetCellCenterWorld(tile);
     }
 
-    public bool CheckTileBound(Vector3Int tile)
+    public bool CheckBound(Vector3Int tile)
     {
         if(tile.x < 0 || tile.x > width-1){
             return false;
         }
 
         if(tile.y < 0 || tile.y > height-1){
-            return false;
-        }
-
-        return true;
-    }
-
-    public bool CheckBound(Vector3 pos)
-    {
-        if(pos.x < 0 || pos.x > width){
-            return false;
-        }
-
-        if(pos.y < 0 || pos.y > height){
             return false;
         }
 

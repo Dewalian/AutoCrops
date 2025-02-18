@@ -5,6 +5,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private List<Crop> crops;
+    private List<Crop> unlockedCrops = new List<Crop>();
     [SerializeField] private Marker marker;
     [SerializeField] private Item cropSpawner;
     [SerializeField] private Item fertilizer;
@@ -108,6 +109,13 @@ public class Inventory : MonoBehaviour
         }
 
         cropCount++;
+        unlockedCrops.Add(crops[index]);
+        
         OnUnlockCrop?.Invoke(index);
+    }
+
+    public List<Crop> GetUnlockedCrops()
+    {
+        return unlockedCrops;
     }
 }

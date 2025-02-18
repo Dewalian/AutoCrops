@@ -30,6 +30,9 @@ public class CropSpawner : Item
         else if(dirtState == SoilState.Occupied){
             Debug.Log("occupied");
         }
+        else if(GoldManager.instance.gold < crop.GetStats().cost){
+            Debug.Log("Not enough money");
+        }
         else{
             cropPool.Get();
         }

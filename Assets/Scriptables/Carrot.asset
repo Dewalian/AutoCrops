@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9555025a99269a4bbeab2651b655f69, type: 3}
+  m_Script: {fileID: 11500000, guid: 42afdf2f1572ffa41a8a84955f80962c, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
   cropName: Carrot
@@ -19,5 +19,7 @@ MonoBehaviour:
   - {fileID: -9117818534409839576, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
   - {fileID: -2336787656233302649, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
   readyIcon: {fileID: -8517778293071628929, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
-  time: 5
-  basePrice: 100
+  time: 10
+  unlockCost: 2000
+  cost: 100
+  price: 150

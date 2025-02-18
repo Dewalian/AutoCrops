@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Crop : MonoBehaviour
 {
-    [SerializeField] private CropStatsSO stats;
+    [SerializeField] private CropSO stats;
     private Area area;
     private SpriteRenderer spriteRenderer;
     private Vector3Int tile;
@@ -39,7 +39,7 @@ public class Crop : MonoBehaviour
     private void OnDisable()
     {
         quality -= 50;
-        float price = stats.price + stats.price * quality / 20;
+        int price = stats.price + Mathf.FloorToInt(stats.price * quality / 20);
         GoldManager.instance.AddGold(price);
     }
 
@@ -97,7 +97,7 @@ public class Crop : MonoBehaviour
         return stats.readyIcon;
     }
 
-    public CropStatsSO GetStats()
+    public CropSO GetStats()
     {
         return stats;
     }
