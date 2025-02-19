@@ -32,7 +32,7 @@ public class AutoHouseController : MonoBehaviour
         AutoHouse autoHouse = autoHouses[index].GetComponent<AutoHouse>();
         HouseStats stats = autoHouse.GetStats();
 
-        if(GoldManager.instance.gold < stats.upgradeCost){
+        if(!autoHouse.CanUpgrade()){
             return;
         }
 

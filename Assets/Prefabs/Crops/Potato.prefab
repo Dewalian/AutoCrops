@@ -71,5 +71,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1756341237890881, guid: 4c4eff06cc485074eaeca50227fe6f87, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 509597038190978871}
   m_SourcePrefab: {fileID: 100100000, guid: 4c4eff06cc485074eaeca50227fe6f87, type: 3}
+--- !u!1 &7302417672201332880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1756341237890881, guid: 4c4eff06cc485074eaeca50227fe6f87, type: 3}
+  m_PrefabInstance: {fileID: 7300716856519612369}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &509597038190978871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7302417672201332880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ff3b7bf07512d43985615a5f7bf331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fertilizerStats: {fileID: 11400000, guid: 378693a69b95e76438abdfe9e39e12c3, type: 2}
+  activateWhenPlanted: 0
+  activateWhenHarvested: 1
+  activateWhenFertilized: 0

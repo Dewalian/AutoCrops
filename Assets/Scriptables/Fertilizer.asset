@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10699d23b7afc7045877b258ff5b32bc, type: 3}
-  m_Name: AutoHarvest
+  m_Script: {fileID: 11500000, guid: 3d0102ed88ab63846a5ced38b879eb45, type: 3}
+  m_Name: Fertilizer
   m_EditorClassIdentifier: 
-  houseName: Auto Harvest
-  maxLevel: 20
-  unlockCost: 200
-  upgradeCost: 100
-  costIncrement: 40
-  cd: 3.6
-  cdDecrement: 0.18
+  qualityBoost: 0
+  timeBoost: 0

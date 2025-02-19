@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 
 public class Area : MonoBehaviour
 {
-    
     [SerializeField] private TileBase soilTile;
     [SerializeField] private TileBase dirtTile;
     private Soil[,] grid;

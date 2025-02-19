@@ -15,7 +15,7 @@ public class AutoHouseUI : MonoBehaviour
         public TMP_Text levelText;
         public TMP_Text upgradeCostText;
         public TMP_Text freqPerSecText;
-        public HouseSO stats;
+        public HouseSO baseStats;
     }
 
     [SerializeField] private HouseButton[] houseButtons;
@@ -38,7 +38,7 @@ public class AutoHouseUI : MonoBehaviour
 
         for(int i=0; i<houseButtons.Length; i++){
             HouseButton houseButton = houseButtons[i];
-            SetStats(i, 1, houseButton.stats.upgradeCost, houseButton.stats.cd);
+            SetStats(i, 1, houseButton.baseStats.upgradeCost, houseButton.baseStats.cd);
         }
     }
 
@@ -70,6 +70,6 @@ public class AutoHouseUI : MonoBehaviour
         HouseButton houseButton = houseButtons[index];
 
         TMP_Text cost = houseButton.lockedButton.GetComponentInChildren<TMP_Text>();
-        cost.text = "$" + houseButton.stats.unlockCost.ToString();
+        cost.text = "$" + houseButton.baseStats.unlockCost.ToString();
     }
 }

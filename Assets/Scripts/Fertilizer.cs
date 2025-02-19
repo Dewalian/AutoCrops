@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Fertilizer : Item
 {
+    [SerializeField] private FertilizerSO stats;
+    [SerializeField] private int maxLevel;
     [SerializeField] private int qualityBoost;
     [SerializeField] private float timeBoost;
     [SerializeField] private int qualityIncrement;
@@ -16,13 +18,14 @@ public class Fertilizer : Item
     {
         level = 1;
         OnUpgrade?.Invoke(level, upgradeCost, qualityBoost, timeBoost);
+        UpdateStats();
     }
 
     public override void Activate(Vector3Int tile)
     {
-        Crop crop = area.GetSoil(tile).crop;
-        if(crop != null){
-            crop.Fertilize(timeBoost, qualityBoost);
+        Soil soil = area.GetSoil(tile);
+        if(soil.crop != null && soil.soilState == SoilState.Occupied){
+            soil.crop.Fertilize(qualityBoost, timeBoost);
         }
     }
 
@@ -40,10 +43,30 @@ public class Fertilizer : Item
         GoldManager.instance.AddGold(-upgradeCost);
 
         OnUpgrade?.Invoke(level, upgradeCost, qualityBoost, timeBoost);
+        UpdateStats();
+    }
+
+    private void UpdateStats()
+    {
+        stats.qualityBoost = qualityBoost;
+        stats.timeBoost = timeBoost;
     }
 
     public int GetUpgradeCost()
     {
         return upgradeCost;
+    }
+
+    public bool CanUpgrade()
+    {
+        if(level >= maxLevel){
+            return false;
+        }
+
+        if(GoldManager.instance.gold < upgradeCost){
+            return false;
+        }
+
+        return true;
     }
 }

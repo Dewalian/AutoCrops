@@ -4,6 +4,7 @@ using UnityEngine;
 public class HouseSO : ScriptableObject
 {
     public string houseName;
+    public int maxLevel;
     public int unlockCost;
     public int upgradeCost;
     public int costIncrement;

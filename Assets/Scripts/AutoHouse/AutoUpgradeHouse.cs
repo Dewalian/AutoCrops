@@ -4,12 +4,18 @@ using UnityEngine;
 public class AutoUpgradeHouse : AutoHouse
 {
     [SerializeField] private GameObject[] autoHouses;
-    [SerializeField] private GameObject fertilizer;
+    [SerializeField] private Fertilizer fertilizer;
+    [SerializeField] private AutoHouseController autoHouseController;
     private int[] upgradeCosts = new int[5];
 
     protected override void Start()
     {
         SetStats();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
         UpdateUpgradeCosts();
     }
 
@@ -20,7 +26,7 @@ public class AutoUpgradeHouse : AutoHouse
             upgradeCosts[i] = autoHouse.GetStats().upgradeCost;
         }
 
-        upgradeCosts[4] = fertilizer.GetComponent<Fertilizer>().GetUpgradeCost();
+        upgradeCosts[4] = fertilizer.GetUpgradeCost();
     }
 
     protected override void Automation()
@@ -29,6 +35,7 @@ public class AutoUpgradeHouse : AutoHouse
             onCD = true;
             int cheapestUpgrade = upgradeCosts[0];
             int cheapestIndex = 0;
+            bool canUpgrade = true;
 
             for(int i=0; i<upgradeCosts.Length; i++){
                 if(upgradeCosts[i] < cheapestUpgrade){
@@ -38,15 +45,21 @@ public class AutoUpgradeHouse : AutoHouse
             }
 
             if(cheapestIndex == 4){
-                fertilizer.GetComponent<Fertilizer>().Upgrade();
+                fertilizer.Upgrade();
+                canUpgrade = fertilizer.CanUpgrade();
             }
             else{
+                autoHouseController.UpgradeHouse(cheapestIndex);
                 AutoHouse autoHouse = autoHouses[cheapestIndex].GetComponent<AutoHouse>();
-                autoHouse.Upgrade();
+                canUpgrade = autoHouse.CanUpgrade();
             }
 
-            UpdateUpgradeCosts();
-            StartCoroutine(AutomationCD());
+            if(canUpgrade){
+                StartCoroutine(AutomationCD());
+            }
+            else{
+                onCD = false;
+            }
         }
     }
 }

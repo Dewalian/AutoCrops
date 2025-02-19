@@ -15,6 +15,7 @@ public class Crop : MonoBehaviour
     private bool isReady;
     public Action<float> OnTimePassed;
     public Action OnReady;
+    public Action OnFertilized;
 
     private void Awake()
     {
@@ -30,7 +31,7 @@ public class Crop : MonoBehaviour
         area.SetSoil(tile, SoilState.Empty, null);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         area.SetSoil(tile, SoilState.Occupied, this);
 
@@ -82,10 +83,12 @@ public class Crop : MonoBehaviour
         OnTimePassed?.Invoke(secondsPassed);
     }
 
-    public void Fertilize(float timerBoost, float qualityBoost)
+    public void Fertilize(float qualityBoost, float timeBoost)
     {
-        secondsPassed += timerBoost;
         quality += qualityBoost;
+        secondsPassed += timeBoost;
+
+        OnFertilized?.Invoke();
     }
 
     public Sprite GetMarkerIcon()
@@ -101,5 +104,15 @@ public class Crop : MonoBehaviour
     public CropSO GetStats()
     {
         return stats;
+    }
+
+    public Vector3Int GetTile()
+    {
+        return tile;
+    }
+
+    public Area GetArea()
+    {
+        return area;
     }
 }

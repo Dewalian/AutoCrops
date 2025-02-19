@@ -14,6 +14,11 @@ public class GoldUI : MonoBehaviour
         GoldManager.instance.OnAddGold += SetGold;
     }
 
+    private void OnDisable()
+    {
+        GoldManager.instance.OnAddGold -= SetGold;
+    }
+
     private void Start()
     {
         gold = GoldManager.instance.gold;

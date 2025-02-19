@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: AutoUpgrade
   m_EditorClassIdentifier: 
   houseName: Auto Upgrade
-  unlockCost: 10
-  upgradeCost: 20
-  costIncrement: 30
-  cd: 1
-  cdDecrement: 1
+  maxLevel: 10
+  unlockCost: 20000
+  upgradeCost: 1000
+  costIncrement: 1000
+  cd: 50
+  cdDecrement: 0.45

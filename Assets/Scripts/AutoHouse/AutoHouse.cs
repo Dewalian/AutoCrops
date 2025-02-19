@@ -33,7 +33,7 @@ public abstract class AutoHouse : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         Automation();
     }
@@ -59,24 +59,44 @@ public abstract class AutoHouse : MonoBehaviour
 
     protected Vector3Int SearchRandomTile(SoilState state)
     {
-        List<Vector3Int> tilesCopy = new List<Vector3Int>();
+        // List<Vector3Int> tilesCopy = new List<Vector3Int>();
         
-        for(int i=0; i<tiles.Count; i++){
-            tilesCopy.Add(tiles[i]);
-        }
+        // for(int i=0; i<tiles.Count; i++){
+        //     tilesCopy.Add(tiles[i]);
+        // }
         
-        for(int i=0; i<tiles.Count; i++){
-            int randomIndex = Random.Range(0, tilesCopy.Count);
-            Vector3Int randomTile = tilesCopy[randomIndex];
+        // for(int i=0; i<tiles.Count; i++){
+        //     int randomIndex = Random.Range(0, tilesCopy.Count);
+        //     Vector3Int randomTile = tilesCopy[randomIndex];
 
-            if(area.GetSoil(randomTile).soilState == state){
-                return randomTile;
+        //     if(area.GetSoil(randomTile).soilState == state){
+        //         return randomTile;
+        //     }
+
+        //     tilesCopy.Remove(randomTile);
+        // }
+        // return new Vector3Int(-1, -1, -1);
+
+        List<Vector3Int> stateTiles = new List<Vector3Int>();
+
+        foreach(Vector3Int tile in tiles){
+            if(area.GetSoil(tile).soilState == state){
+                stateTiles.Add(tile);
             }
-
-            tilesCopy.Remove(randomTile);
         }
 
-        return new Vector3Int(-1, -1, -1);
+        if(stateTiles.Count > 0){
+            int randomIndex = Random.Range(0, stateTiles.Count);
+            Vector3Int randomTile = stateTiles[randomIndex];
+
+            return randomTile;
+        }
+        else{
+            return new Vector3Int(-1, -1, -1);
+        }
+        
+        
+        
     }
 
     public HouseSO GetBaseStats()
@@ -87,6 +107,19 @@ public abstract class AutoHouse : MonoBehaviour
     public HouseStats GetStats()
     {
         return stats;
+    }
+
+    public bool CanUpgrade()
+    {
+        if(stats.level >= baseStats.maxLevel){
+            return false;
+        }
+
+        if(GoldManager.instance.gold < stats.upgradeCost){
+            return false;
+        }
+
+        return true;
     }
 }
 
