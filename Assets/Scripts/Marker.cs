@@ -12,37 +12,6 @@ public class Marker : MonoBehaviour
     private Vector3Int currTile;
     public Action<Sprite> OnSetItem;
 
-    // private void Awake()
-    // {
-    //     cropPool = new ObjectPool<Crop>(CreateCrop, OnGetCrop, OnReleaseCrop);
-    // }
-
-    // private Crop CreateCrop()
-    // {
-    //     GameObject cropObj = Instantiate(selectedCrop.gameObject, area.GetTileCenter(currTile), Quaternion.identity);
-    //     Crop crop = cropObj.GetComponent<Crop>();
-
-    //     crop.Init(area, currTile);
-    //     area.SetDirt(currTile, SoilState.Occupied, crop);
-
-    //     return crop;
-    // }
-
-    // private void OnGetCrop(Crop crop)
-    // {
-    //     crop.gameObject.SetActive(true);
-    //     crop.transform.position = area.GetTileCenter(currTile);
-
-    //     crop.Init(area, currTile);
-    //     area.SetDirt(currTile, SoilState.Occupied, crop);
-    // }
-
-    // private void OnReleaseCrop(Crop crop)
-    // {
-    //     crop.gameObject.SetActive(false);
-    //     area.SetDirt(currTile, SoilState.Empty, null);
-    // }
-
     public void ActivateItem(Vector3Int tile)
     {
         currTile = tile;

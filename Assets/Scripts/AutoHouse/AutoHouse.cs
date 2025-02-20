@@ -13,9 +13,14 @@ public abstract class AutoHouse : MonoBehaviour
     protected bool onCD;
     protected List<Vector3Int> tiles = new List<Vector3Int>();
 
-    private void Awake()
+    protected virtual void Awake()
     {
         autoMarker = GetComponent<Marker>();
+    }
+
+    protected virtual void OnEnable()
+    {
+        onCD = false;
     }
 
     protected virtual void Start()
@@ -59,24 +64,6 @@ public abstract class AutoHouse : MonoBehaviour
 
     protected Vector3Int SearchRandomTile(SoilState state)
     {
-        // List<Vector3Int> tilesCopy = new List<Vector3Int>();
-        
-        // for(int i=0; i<tiles.Count; i++){
-        //     tilesCopy.Add(tiles[i]);
-        // }
-        
-        // for(int i=0; i<tiles.Count; i++){
-        //     int randomIndex = Random.Range(0, tilesCopy.Count);
-        //     Vector3Int randomTile = tilesCopy[randomIndex];
-
-        //     if(area.GetSoil(randomTile).soilState == state){
-        //         return randomTile;
-        //     }
-
-        //     tilesCopy.Remove(randomTile);
-        // }
-        // return new Vector3Int(-1, -1, -1);
-
         List<Vector3Int> stateTiles = new List<Vector3Int>();
 
         foreach(Vector3Int tile in tiles){
@@ -94,9 +81,6 @@ public abstract class AutoHouse : MonoBehaviour
         else{
             return new Vector3Int(-1, -1, -1);
         }
-        
-        
-        
     }
 
     public HouseSO GetBaseStats()

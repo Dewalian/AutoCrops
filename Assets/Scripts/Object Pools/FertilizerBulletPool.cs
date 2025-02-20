@@ -8,7 +8,7 @@ public class FertilizerBulletPool : MonoBehaviour
     [SerializeField] private FertilizerBullet fertilizerBulletPrefab;
     private Vector3Int startTile;
     private Vector3Int endTile;
-    public IObjectPool<FertilizerBullet> pool;
+    private IObjectPool<FertilizerBullet> pool;
 
     private void Awake()
     {
@@ -27,7 +27,8 @@ public class FertilizerBulletPool : MonoBehaviour
     private FertilizerBullet CreateBullet()
     {
         FertilizerBullet fertilizerBullet = Instantiate(fertilizerBulletPrefab, transform);
-        fertilizerBullet.init(area, pool, startTile, endTile);
+        fertilizerBullet.SetPool(pool);
+        fertilizerBullet.Init(area, startTile, endTile);
         
         return fertilizerBullet;
     }
@@ -35,7 +36,7 @@ public class FertilizerBulletPool : MonoBehaviour
     private void OnGet(FertilizerBullet fertilizerBullet)
     {
         fertilizerBullet.gameObject.SetActive(true);
-        fertilizerBullet.init(area, pool, startTile, endTile);
+        fertilizerBullet.Init(area, startTile, endTile);
     }
 
     private void OnRelease(FertilizerBullet fertilizerBullet){

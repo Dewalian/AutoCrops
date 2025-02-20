@@ -31,7 +31,8 @@ public class Fertilizer : Item
 
     public void Upgrade()
     {
-        if(GoldManager.instance.gold < upgradeCost){
+        bool canUpgrade = CanUpgrade();
+        if(!canUpgrade){
             return;
         }
 
@@ -55,6 +56,11 @@ public class Fertilizer : Item
     public int GetUpgradeCost()
     {
         return upgradeCost;
+    }
+
+    public int GetMaxLevel()
+    {
+        return maxLevel;
     }
 
     public bool CanUpgrade()

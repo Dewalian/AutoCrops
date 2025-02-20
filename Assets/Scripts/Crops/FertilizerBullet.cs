@@ -13,10 +13,14 @@ public class FertilizerBullet : MonoBehaviour
     private Vector3Int startTile;
     private Vector3Int endTile;
 
-    public void init(Area area, IObjectPool<FertilizerBullet> pool, Vector3Int startTile, Vector3Int endTile)
+    public void SetPool(IObjectPool<FertilizerBullet> pool)
+    {
+        this.pool = pool;
+    }
+
+    public void Init(Area area, Vector3Int startTile, Vector3Int endTile)
     {
         this.area = area;
-        this.pool = pool;
         this.startTile = startTile;
         this.endTile = endTile;
 
@@ -28,8 +32,7 @@ public class FertilizerBullet : MonoBehaviour
         Vector3 startTileCenter = area.GetTileCenter(startTile);
         Vector3 endTileCenter = area.GetTileCenter(endTile);
 
-        while(timePassed < duration)
-        {
+        while(timePassed < duration){
             timePassed += Time.deltaTime;
             
             float durationNorm = timePassed / duration;

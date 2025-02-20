@@ -7,11 +7,21 @@ public class AutoPlantHouse : AutoHouse
     private List<Crop> crops;
     private CropSpawner cropSpawner;
 
-    
-    private void OnEnable()
+    protected override void Awake()
     {
+        base.Awake();
         cropSpawner = GetComponent<CropSpawner>();
+    }
+    
+    protected override void OnEnable()
+    {
+        base.OnEnable();
         inventory.OnUnlockCrop += UpdateUnlockedCrops;
+    }
+
+    private void OnDisable()
+    {
+        inventory.OnUnlockCrop -= UpdateUnlockedCrops;
     }
 
     protected override void Start()

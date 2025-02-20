@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: AutoHarvest
   m_EditorClassIdentifier: 
   houseName: Auto Harvest
-  maxLevel: 20
+  maxLevel: 25
   unlockCost: 200
   upgradeCost: 100
-  costIncrement: 40
-  cd: 3.6
-  cdDecrement: 0.18
+  costIncrement: 150
+  cd: 3.2
+  cdDecrement: 0.12

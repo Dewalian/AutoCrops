@@ -8,6 +8,7 @@ public class FertilizerUI : MonoBehaviour
     [SerializeField] private TMP_Text upgradeCostText;
     [SerializeField] private TMP_Text qualityBoostText;
     [SerializeField] private TMP_Text timeBoostText;
+    private int level;
 
     private void OnEnable()
     {
@@ -16,9 +17,18 @@ public class FertilizerUI : MonoBehaviour
 
     private void SetStats(int level, int upgradeCost, int qualityBoost, float timeBoost)
     {
-        levelText.text = "Level " + level.ToString();
-        upgradeCostText.text = "$" + upgradeCost.ToString();
-        qualityBoostText.text = "+" + qualityBoost.ToString() + "%";
-        timeBoostText.text = "+" + timeBoost.ToString() + "s";
+        this.level++;
+
+        if(this.level >= fertilizer.GetMaxLevel()){
+            levelText.text = "Level Max";
+            upgradeCostText.text = "Max";
+        }
+        else{
+            levelText.text = "Level " + level.ToString();
+            upgradeCostText.text = "$" + upgradeCost.ToString();
+            qualityBoostText.text = "+" + qualityBoost.ToString() + "%";
+            timeBoostText.text = "+" + timeBoost.ToString() + "s";
+        }
+
     }
 }

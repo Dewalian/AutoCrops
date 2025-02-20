@@ -13,6 +13,7 @@ public class InventoryUI : MonoBehaviour
         public GameObject unlockedButton;
         public GameObject lockedButton;
         public CropSO stats;
+        public Image icon;
     }
     [SerializeField] private CropButton[] cropButtons;
     [SerializeField] private GameObject[] buttons;
@@ -52,6 +53,8 @@ public class InventoryUI : MonoBehaviour
 
         TMP_Text cost = cropButton.unlockedButton.GetComponentInChildren<TMP_Text>();
         cost.text = "$" + cropButton.stats.cost.ToString();
+
+        cropButton.icon.sprite = cropButton.stats.readyIcon;
 
         ShowCost(index + 1);
     }

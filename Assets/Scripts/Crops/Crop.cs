@@ -29,6 +29,8 @@ public class Crop : MonoBehaviour
         GoldManager.instance.AddGold(price);
 
         area.SetSoil(tile, SoilState.Empty, null);
+
+        PriceEffectPool.instance.Spawn(price, area.GetTileCenter(tile));
     }
 
     protected virtual void Start()
@@ -88,6 +90,7 @@ public class Crop : MonoBehaviour
         quality += qualityBoost;
         secondsPassed += timeBoost;
 
+        FertilizeEffectPool.instance.Spawn(area.GetTileCenter(tile));
         OnFertilized?.Invoke();
     }
 

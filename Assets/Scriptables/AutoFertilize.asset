@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: AutoFertilize
   m_EditorClassIdentifier: 
   houseName: Auto Fertilize
-  maxLevel: 30
+  maxLevel: 20
   unlockCost: 4000
   upgradeCost: 200
   costIncrement: 300
   cd: 5
-  cdDecrement: 0.18
+  cdDecrement: 0.2

@@ -41,4 +41,14 @@ public class AutoHouseController : MonoBehaviour
 
         OnUpgradeHouse?.Invoke(index, stats.level, stats.upgradeCost, stats.cd);
     }
+
+    public void ToggleHouse(int index)
+    {
+        if(autoHouses[index].activeSelf){
+            autoHouses[index].SetActive(false);
+        }
+        else{
+            autoHouses[index].SetActive(true);
+        }
+    }
 }

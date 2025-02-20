@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: -7857914527944237572, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
   - {fileID: 9166192253844269286, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
   readyIcon: {fileID: 7619221027992080592, guid: f6ad43c677bd683458a85a461dcedce4, type: 3}
-  time: 15
+  time: 18
   unlockCost: 5000
   cost: 50
   price: 100

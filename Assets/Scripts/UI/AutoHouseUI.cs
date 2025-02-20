@@ -16,8 +16,8 @@ public class AutoHouseUI : MonoBehaviour
         public TMP_Text upgradeCostText;
         public TMP_Text freqPerSecText;
         public HouseSO baseStats;
+        public int level;
     }
-
     [SerializeField] private HouseButton[] houseButtons;
 
     private void OnEnable()
@@ -45,10 +45,18 @@ public class AutoHouseUI : MonoBehaviour
     private void SetStats(int index, int level, int upgradeCost, float cd)
     {
         HouseButton houseButton = houseButtons[index];
+        houseButton.level++;
 
-        houseButton.levelText.text = "Level " + level.ToString();
-        houseButton.upgradeCostText.text = "$" + upgradeCost.ToString();
-        houseButton.freqPerSecText.text = (1 / cd).ToString("F2") + "/s";
+        if(houseButton.level >= houseButton.baseStats.maxLevel){
+            houseButton.levelText.text = "Level Max";
+            houseButton.upgradeCostText.text = "Max";
+        }
+        else{
+            houseButton.levelText.text = "Level " + level.ToString();
+            houseButton.upgradeCostText.text = "$" + upgradeCost.ToString();
+            houseButton.freqPerSecText.text = (1 / cd).ToString("F2") + "/s";
+        }
+
     }
 
     private void UnlockHouse(int index)
